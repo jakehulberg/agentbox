@@ -1,0 +1,8 @@
+#!/bin/sh
+# Keep the orchestrator running; on a crash it restarts and recover() cleans up.
+cd "$HOME/agentbox" || exit 1
+while true; do
+  node orchestrator/server.mjs 2>&1 | tee -a "$HOME/agentbox/orchestrator.log"
+  echo "[run-orchestrator] exited, restarting in 2s" | tee -a "$HOME/agentbox/orchestrator.log"
+  sleep 2
+done
