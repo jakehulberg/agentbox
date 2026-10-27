@@ -1,0 +1,34 @@
+name = "agentbox-api"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+workers_dev = true
+account_id = "<your-cloudflare-account-id>"
+
+[[durable_objects.bindings]]
+name = "SESSION"
+class_name = "SessionDO"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["SessionDO"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "agentbox"
+database_id = "<your-d1-database-id>"
+
+[observability]
+enabled = true
+
+[vars]
+BOXD_URL = "https://boxd.example.com"
+INFISICAL_URL = "https://app.infisical.com"
+DEFAULT_REPO = "jakehulberg2/infisical2"
+BASE_BRANCH = "main"
+PROXY_ADDR = "av-relay:17323"
+AGENT_BUNDLE = "agent-turn"
+FINISH_BUNDLE = "finish"
+IDLE_MINUTES = "5"
+ALLOWED_LOGINS = "your-github-login"
+GITHUB_OAUTH_CLIENT_ID = "<your-github-oauth-app-client-id>"
+# secrets (wrangler secret put): BOXD_TOKEN, INFISICAL_CLIENT_ID, INFISICAL_CLIENT_SECRET, JWT_SECRET, CF_ACCESS_CLIENT_ID, CF_ACCESS_CLIENT_SECRET

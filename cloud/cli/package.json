@@ -1,0 +1,9 @@
+{
+  "name": "@jakehulberg2/agentbox",
+  "version": "0.1.0",
+  "description": "Claude Code in a sandbox, credentials brokered by Infisical Agent Vault",
+  "type": "module",
+  "bin": { "agentbox": "bin/agentbox" },
+  "engines": { "node": ">=22" },
+  "files": ["bin/"]
+}

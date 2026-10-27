@@ -1,0 +1,15 @@
+# agentbox repo image: the golden image plus jakehulberg2/infisical2 with deps installed.
+# Lockfiles are copied first so npm ci only re-runs when dependencies change, not on every commit.
+FROM agentbox/golden:latest
+USER root
+# backend has native modules (pkcs11js) that compile at install time
+RUN apt-get update && apt-get install -y --no-install-recommends build-essential && rm -rf /var/lib/apt/lists/*
+RUN mkdir -p /workspace/backend /workspace/frontend && chown -R agent:agent /workspace
+USER agent
+WORKDIR /workspace
+COPY --chown=agent:agent infisical2/backend/package.json infisical2/backend/package-lock.json backend/
+COPY --chown=agent:agent infisical2/frontend/package.json infisical2/frontend/package-lock.json frontend/
+RUN cd backend && npm ci --no-audit --no-fund \
+ && cd ../frontend && npm ci --no-audit --no-fund \
+ && npm cache clean --force
+COPY --chown=agent:agent infisical2 /workspace

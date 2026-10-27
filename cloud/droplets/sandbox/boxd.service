@@ -1,0 +1,10 @@
+[Unit]
+Description=agentbox box API
+After=docker.service
+Requires=docker.service
+[Service]
+EnvironmentFile=/etc/agentbox/boxd.env
+ExecStart=/usr/bin/node /opt/agentbox/boxd.mjs
+Restart=always
+[Install]
+WantedBy=multi-user.target

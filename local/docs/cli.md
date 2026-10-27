@@ -9,7 +9,7 @@ It plays the role of Ramp's clients (their web UI, Slack bot and Chrome extensio
 ```bash
 export AGENTBOX_URL=http://100.124.121.114:8787          # the orchestrator on mini2, over Tailscale
 export ORCH_API_TOKEN=$(ssh mini2 "grep ^ORCH_API_TOKEN ~/agentbox/.env | cut -d= -f2")
-alias agentbox=~/Documents/GitHub/agentbox/bin/agentbox
+alias agentbox=~/Documents/GitHub/agentbox/local/bin/agentbox
 # optional: export AGENTBOX_REPO=owner/repo   (default jakehulberg2/demo-app)
 ```
 
